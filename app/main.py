@@ -3,7 +3,8 @@ def format_linter_error(error: dict) -> dict:
             "column": error.get("column_number"),
             "message": error.get("text"),
             "name": error.get("code"),
-            "source": "flake8" }
+            "source": "flake8"
+            }
     pass
 
 
@@ -17,5 +18,5 @@ def format_single_linter_file(file_path: str, errors: list) -> dict:
 
 
 def format_linter_report(linter_report: dict) -> list:
-    return [format_single_linter_file(errors) for error in linter_report]
+    return [format_single_linter_file(file_path, errors) for file_path, errors in linter_report.items()]
     pass
